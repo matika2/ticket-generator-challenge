@@ -17,18 +17,21 @@ class StripGeneratorTest {
         boolean verify = true;
 
         // Print ticket to console
-        boolean print = true;
+        boolean print = false;
 
         VisualStripOfSix visualStripOfSix = new VisualStripOfSix();
 
         System.out.println("Start generating " + limit + " number of strip of six bingo tickets.");
         long startMillis = System.currentTimeMillis();
         for(int strip = 1; strip <= limit; strip++) {
-            int[][] stripOfSixColumns = StripGenerator.generateStripOfSixColumns();
+            // This solution is built on top of a hardcoded strip - but has not been accepted.
+            //int[][] stripOfSixColumns = StripGenerator.generateStripOfSixColumns();
+
+            // This is a fully random solution
+            int[][] stripOfSixColumns = RandomizedStripGenerator.generateRandomStripUntilSucceeds();
 
             if(verify) {
                 VerificationHelper.verifyStripOfSixColumns(stripOfSixColumns);
-                visualStripOfSix.buildFromColumns(stripOfSixColumns);
             }
 
             if(print) {

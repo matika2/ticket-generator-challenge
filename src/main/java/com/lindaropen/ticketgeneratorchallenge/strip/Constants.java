@@ -21,6 +21,9 @@ public class Constants {
     // One column is of 18 rows. Non-first and non-last columns contain 10 numbers, the rest (18 - 10 = 8) is blank.
     public static final int BLANKS_IN_NONE_EDGE_COLUMN = 8;
 
+    // First column contains 9 blanks, last column contains 7 blanks. There are 9 columns altogether => number of non-edge columns is 7, containing 8 columns each. That adds up to 9 + 7 + 7*8 = 72
+    public static final int TOTAL_BLANK_COUNT = 72;
+
     // By definition a bingo ticket consists of 3 rows
     public static final int SINGLE_BINGO_ROWS = 3;
 
@@ -38,7 +41,9 @@ public class Constants {
 
     // A bingo ticket is logically split into ticket columns of 3 numbers.
     // A strip of six consists of 6 tickets of 3 rows of 9 numbers = 6 * 3 * 9 = 162
-    // Therefore ticket column count = 162 / 3 = 54
+    public static final int TOTAL_FIELDS_ON_A_STRIP_OF_SIX = 162;
+
+    // Ticket column count = 162 / 3 = 54
     public static final int TICKET_COLUMN_COUNT = 54;
 
     // One column is of 18 rows, therefore it consists of 18 / 3 = 6 triples

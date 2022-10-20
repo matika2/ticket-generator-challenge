@@ -30,9 +30,33 @@ The recommended time is less than 1s (with a lightweight random implementation)
 I use Java 8 with Maven to solve the challenge. Lombok and Junit is used as Maven dependencies. I used SonarList analysis to eliminate possible coding issues and code smells.
 
 ### Idea
+Strip structure generation rules are identified into the following categories
+- (Ticket) row related rules
+- Ticket column (aka. triple) related rules
+- Strip column related rules
+
+All these rules are taken into consideration when random ticket structures are generated. However, not all subsequent generations will succeed - the generation rules may collide. In such scenarios we just try to re-generate the strip.
+Shortcut rules are applied so that the randomized generation of 10000 strip of six is optimized.
+
+The generation takes less than 1s on my computer, including 
+- Unique ticket structure generation 
+- Random number generation
+- Strip validation
+
+(The generation takes way less than 1s on my computer without strip validation though.)
+
+Class StripGeneratorTest is parameterized by
+- A feature flag for strip generation validation
+- A feature flag for strip generation printout
+- A limit for setting the number of strips to be generated
+
+The test class will print the time it takes to generate the strips. Feature flags and the number of strips are also printed.
+
+### Further optimization option
+Depending on number of CPU cores of the execution environment it is worth considering parallel generation of strips on separate threads and consolidate the strips into a collection.
+
+### Not-accepted idea (kept in code base)
 Let's take a valid strip of six with blank spaces and without numbers. New ticket generation involves the steps below. Any combination of these steps maintain validity of the ticket.
 - Shuffle tickets within a strip of six
 - Shuffle rows within a single ticket
 - Shuffle columns except the first and last ones
-
-Please use StripGeneratorTest for ticket generation.
